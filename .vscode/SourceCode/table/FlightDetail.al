@@ -62,6 +62,8 @@ table 50310 "Flight Detail"
 
 
 
+
+
         }
 
         field(30; "Departure Date"; Date)
