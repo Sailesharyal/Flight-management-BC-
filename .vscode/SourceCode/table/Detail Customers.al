@@ -14,6 +14,13 @@ table 50314 "Detail Customers"
         {
             DataClassification = ToBeClassified;
             NotBlank = true;
+            trigger OnValidate()
+            var
+                myInt: Integer;
+            begin
+                if Rec."Passport Number" = Blacklisted."Blacklisted Passport" then
+                    Message('This is blocked passport');
+            end;
 
         }
 
@@ -32,6 +39,18 @@ table 50314 "Detail Customers"
         {
             DataClassification = ToBeClassified;
             NotBlank = true;
+
+
+            trigger OnValidate()
+            var
+                myInt: Integer;
+            begin
+                if Rec."Passport Expiry Date" < 0D then
+                    Error('Your passport is Expired');
+            end;
+
+
+
 
         }
 
@@ -56,7 +75,7 @@ table 50314 "Detail Customers"
     }
 
     var
-        myInt: Integer;
+        Blacklisted: Record BlacklistedPP;
 
     trigger OnInsert()
     begin
@@ -79,3 +98,4 @@ table 50314 "Detail Customers"
     end;
 
 }
+
