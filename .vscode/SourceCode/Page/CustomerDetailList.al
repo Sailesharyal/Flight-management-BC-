@@ -49,13 +49,6 @@ page 50312 "DetailCustomerList"
                 {
                     ApplicationArea = All;
 
-                    trigger OnValidate()
-                    var
-                        myInt: Integer;
-                    begin
-                        if Rec."Passport Expiry Date" < 0D then
-                            Error('Your passport is Expired');
-                    end;
 
 
 

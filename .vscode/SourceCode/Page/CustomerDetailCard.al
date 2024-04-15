@@ -1,15 +1,13 @@
 page 50313 "DetailCustomersCard"
 {
-    PageType = List;
-    ApplicationArea = All;
-    UsageCategory = Lists;
+    PageType = Card;
     SourceTable = "Detail Customers";
 
     layout
     {
         area(Content)
         {
-            repeater(GroupName)
+            Group("Customer Detail")
             {
                 field("Passanger Name"; Rec."Passanger Name")
                 {
@@ -41,12 +39,20 @@ page 50313 "DetailCustomersCard"
                 {
                     ApplicationArea = All;
 
+
                 }
 
 
                 field("Passport Expiry Date"; Rec."Passport Expiry Date")
                 {
                     ApplicationArea = All;
+                    trigger OnValidate()
+                    var
+                        myInt: Integer;
+                    begin
+                        if Rec."Passport Expiry Date" < 0D then
+                            Error('Your passport is Expired');
+                    end;
 
                 }
 
